@@ -3,7 +3,7 @@
 import React from "react";
 import * as Form from "@radix-ui/react-form";
 // import "./styles.css";
-import "./ProfileForm.css";
+import "./RadixForm.css";
 
 export default function ProfileForm({ action, user_id, email, new_profile }) {
   //space

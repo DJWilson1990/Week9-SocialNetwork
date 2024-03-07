@@ -31,3 +31,8 @@ export async function getProfile(id) {
     return undefined;
   }
 }
+
+export async function getPosts() {
+  const posts = (await sql`SELECT * FROM posts`).rows;
+  return posts;
+}
