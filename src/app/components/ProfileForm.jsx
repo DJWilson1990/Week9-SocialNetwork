@@ -18,7 +18,7 @@ export default function ProfileForm({ action, user_id, email, new_profile }) {
 
   console.log(user_id, email, new_profile);
   return (
-    <Form.Root className="FormRoot" onSubmit={submitForm}>
+    <Form.Root className="FormRoot mx-auto" onSubmit={submitForm}>
       <input type="hidden" name="user_id" value={user_id} />
       <input type="hidden" name="email" value={email} />
       <input type="hidden" name="new_profile" value={new_profile} />

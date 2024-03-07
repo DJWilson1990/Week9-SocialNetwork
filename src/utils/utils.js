@@ -32,7 +32,27 @@ export async function getProfile(id) {
   }
 }
 
+export async function savePost({ formData, newPost }) {
+  const userId = formData.get("user_id");
+  const postContent = formData.get("content");
+  const time = new Date().toDateString();
+
+  console.log("~~~~~~" + userId);
+  console.log("~~~~~~" + postContent);
+  console.log("~~~~~~" + time);
+  // console.log("utils" + formData);
+  // console.log("utils" + newPost);
+
+  let queryString = `INSERT INTO posts (content, time, user_id) VALUES ('${postContent}', '${time}', '${userId}')`;
+
+  console.log(queryString);
+
+  const result = await sql.query(queryString);
+}
+
 export async function getPosts() {
-  const posts = (await sql`SELECT * FROM posts`).rows;
+  const posts = (
+    await sql`SELECT posts.content, posts.time, users.first_name, users.last_name FROM posts INNER JOIN users ON posts.user_id = users.id`
+  ).rows;
   return posts;
 }

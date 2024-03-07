@@ -24,12 +24,12 @@ button {
   font-size: 15px;
   font-weight: 500;
   line-height: 35px;
-  color: white;
+  color: black;
 }
 
 .FormMessage {
   font-size: 13px;
-  color: white;
+  color: black;
   opacity: 0.8;
 }
 
@@ -42,22 +42,22 @@ button {
   border-radius: 4px;
 
   font-size: 15px;
-  color: white;
-  background-color: var(--black-a5);
+  color: black;
+  background-color: rgb(239, 229, 244);
   box-shadow: 0 0 0 1px var(--black-a9);
 }
 .Input:hover,
 .Textarea:hover {
-  box-shadow: 0 0 0 1px black;
+  box-shadow: 0 0 0 1px rgb(142, 142, 142);
 }
 .Input:focus,
 .Textarea:focus {
-  box-shadow: 0 0 0 2px black;
+  box-shadow: 0 0 0 2px rgb(142, 142, 142);
 }
 .Input::selection,
 .Textarea::selection {
   background-color: var(--black-a9);
-  color: white;
+  color: black;
 }
 
 .Input {
@@ -91,5 +91,5 @@ button {
   background-color: var(--mauve-3);
 }
 .Button:focus {
-  box-shadow: 0 0 0 2px black;
+  box-shadow: 0 0 0 2px rgb(142, 142, 142);
 }

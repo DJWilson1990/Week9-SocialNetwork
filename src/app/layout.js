@@ -1,6 +1,10 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
+import "@radix-ui/themes/styles.css";
+import { Theme } from "@radix-ui/themes";
+// import { ThemeProvider } from "next-themes";
+
 // import { UserButton } from "@clerk/nextjs";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -14,9 +18,10 @@ export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className="{inter.className} bg-cyan-800">
-          {/* <UserButton /> */}
-          {children}
+        <body className={inter.className}>
+          {/* <ThemeProvider attribute="class"> */}
+          <Theme> {children}</Theme>
+          {/* </ThemeProvider> */}
         </body>
       </html>
     </ClerkProvider>
