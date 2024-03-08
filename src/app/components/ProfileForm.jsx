@@ -109,6 +109,24 @@ export default function ProfileForm({ action, user_id, email, new_profile }) {
         </Form.Control>
       </Form.Field>
 
+      <Form.Field className="FormField" name="content">
+        <div
+          style={{
+            display: "flex",
+            alignItems: "baseline",
+            justifyContent: "space-between",
+          }}
+        >
+          <Form.Label className="FormLabel">About</Form.Label>
+          <Form.Message className="FormMessage" match="valueMissing">
+            About you...
+          </Form.Message>
+        </div>
+        <Form.Control asChild>
+          <textarea className="Textarea" />
+        </Form.Control>
+      </Form.Field>
+
       <Form.Submit asChild>
         <button className="Button" style={{ marginTop: 10 }}>
           Save
