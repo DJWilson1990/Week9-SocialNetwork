@@ -7,7 +7,12 @@ export default async function ViewProfile({ profile }) {
   // const profileData = await getProfile();
   return (
     <div>
-      {/* <Image src={profile.image_link} alt="profile picture" /> */}
+      <Image
+        src={profile.image_link ?? "https://placehold.co/70x70/png"}
+        alt="profile picture"
+        width={70}
+        height={70}
+      />
       <p>{profile.first_name}</p>
       <p>{profile.last_name}</p>
       <p>{profile.email}</p>
