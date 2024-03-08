@@ -10,7 +10,12 @@ export default function Button1({ caption, action }) {
 
   return (
     <Theme>
-      <Button variant="surface" highContrast onClick={handleClick}>
+      <Button
+        variant="surface"
+        highContrast
+        onClick={handleClick}
+        className="hover:cursor-pointer"
+      >
         {caption}
       </Button>
     </Theme>

@@ -3,6 +3,7 @@
 import { currentUser, auth } from "@clerk/nextjs";
 import ProfileForm from "../components/ProfileForm";
 import { getProfile, saveProfile } from "@/utils/utils";
+import { redirect } from "next/navigation";
 
 export default async function Page() {
   let newProfile = true;
@@ -24,6 +25,7 @@ export default async function Page() {
     "use server";
 
     saveProfile({ formData, newProfile });
+    redirect("/timeline");
   }
 
   return (
