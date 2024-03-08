@@ -3,15 +3,16 @@
 import React from "react";
 import * as Form from "@radix-ui/react-form";
 import "./RadixForm.css";
+import { useFormStatus } from "react-dom";
 
 export default function CreatePost({ action, user_id }) {
+  const { pending } = useFormStatus();
+
   async function submitForm(event) {
     event.preventDefault();
-    console.log(event);
-    console.log("*******create post form" + user_id);
 
     const formData = new FormData(event.target);
-    console.log(formData);
+
     action(formData);
   }
 
@@ -37,8 +38,13 @@ export default function CreatePost({ action, user_id }) {
       </Form.Field>
 
       <Form.Submit asChild>
-        <button className="Button" style={{ marginTop: 10 }}>
-          Save
+        <button
+          disabled={pending}
+          type="submit"
+          className="Button"
+          style={{ marginTop: 10 }}
+        >
+          {pending ? "Saving post..." : "Save"}
         </button>
       </Form.Submit>
     </Form.Root>

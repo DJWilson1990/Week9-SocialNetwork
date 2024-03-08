@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function Nav() {
   const { userId } = auth();
-  console.log("userId=" + userId);
+
   return (
     <div className="flex flex-row bg-slate-500">
       <ul>

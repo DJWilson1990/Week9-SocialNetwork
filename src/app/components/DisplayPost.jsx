@@ -2,8 +2,7 @@ import DisplayPostHeader from "./DisplayPostHeader";
 
 export default function DisplayPost({ post }) {
   const userName = `${post.first_name} ${post.last_name}`;
-  console.log(userName);
-  console.log("///////////" + post.user_id);
+
   return (
     <div>
       <DisplayPostHeader

@@ -8,7 +8,6 @@ import { redirect } from "next/navigation";
 
 export default async function Page() {
   const posts = await getPosts();
-  console.log(posts);
 
   const { userId } = auth();
   if (userId) {
@@ -17,7 +16,7 @@ export default async function Page() {
 
   async function newPost() {
     "use server";
-    console.log("newPost action");
+
     redirect(`/createpost/${userId}`);
   }
 

@@ -19,9 +19,8 @@ export async function saveProfile({ formData, newProfile }) {
   if (newProfile === true) {
     queryString = `INSERT INTO users (id, first_name, last_name, email, gender, location, occupation, about) VALUES ('${id}', '${firstName}', '${lastName}', '${email}', '${gender}', '${location}', '${occupation}', '${about}')`;
   }
-  console.log(queryString);
+
   const result = await sql.query(queryString);
-  console.log(result);
 }
 
 export async function getProfile(id) {
@@ -38,17 +37,11 @@ export async function savePost({ formData, newPost }) {
   const postContent = formData.get("content");
   const time = new Date().toDateString();
 
-  console.log("~~~~~~" + userId);
-  console.log("~~~~~~" + postContent);
-  console.log("~~~~~~" + time);
-  // console.log("utils" + formData);
-  // console.log("utils" + newPost);
-
   let queryString = `INSERT INTO posts (content, time, user_id) VALUES ('${postContent}', '${time}', '${userId}')`;
 
-  console.log(queryString);
-
   const result = await sql.query(queryString);
+  revalidatePath("/timeline");
+  return result;
 }
 
 //for global timeline
@@ -64,6 +57,6 @@ export async function getUserPosts(userId) {
   const userPosts = (
     await sql`SELECT posts.content, posts.time, users.first_name, users.last_name, users.image_link FROM posts INNER JOIN users ON posts.user_id = users.id WHERE posts.user_id = ${userId}`
   ).rows;
-  console.log("test log" + userPosts);
+
   return userPosts;
 }

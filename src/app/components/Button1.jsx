@@ -5,7 +5,6 @@ import { Theme, Button } from "@radix-ui/themes";
 
 export default function Button1({ caption, action }) {
   async function handleClick() {
-    console.log("button click");
     action();
   }
 

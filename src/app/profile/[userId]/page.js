@@ -6,10 +6,8 @@ import { getProfile, getUserPosts } from "@/utils/utils";
 
 export default async function page({ params }) {
   const userProfile = await getProfile(params.userId);
-  console.log(userProfile);
-  const posts = await getUserPosts(params.userId);
 
-  console.log("£££££££" + posts);
+  const posts = await getUserPosts(params.userId);
 
   return (
     <div>

@@ -9,10 +9,9 @@ export default function ProfileForm({ action, user_id, email, new_profile }) {
   //space
   async function submitForm(event) {
     event.preventDefault();
-    console.log(event);
 
     const formData = new FormData(event.target);
-    console.log(formData);
+
     action(formData);
   }
 

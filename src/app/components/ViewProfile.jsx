@@ -3,8 +3,6 @@ import Image from "next/image";
 import React from "react";
 
 export default async function ViewProfile({ profile }) {
-  console.log("profile component" + profile);
-  // const profileData = await getProfile();
   return (
     <div>
       <Image
