@@ -3,6 +3,12 @@
 import { sql } from "@vercel/postgres";
 import { revalidatePath } from "next/cache";
 
+export async function updateProfileImage(userId, imageUrl) {
+  const queryString = `UPDATE users SET image_link = ${imageUrl} WHERE users.id = ${userId}`;
+  console.log(queryString);
+  await sql.query(queryString);
+}
+
 export async function saveProfile({ formData, newProfile }) {
   const id = formData.get("user_id");
   const firstName = formData.get("first_name");
@@ -43,13 +49,13 @@ export async function savePost({ formData, newPost }) {
   const time = new Date().toISOString();
 
   let queryString = `INSERT INTO posts (content, time, user_id) VALUES ('${postContent}', '${time}', '${userId}')`;
-
+  let result = {};
   try {
-    const result = await sql.query(queryString);
+    result = await sql.query(queryString);
     console.log("==================" + result);
   } catch (error) {
     console.log("================" + error);
-    return { result: false, message: error };
+    result = { result: false, message: error };
   }
   revalidatePath("/timeline");
   return result;
@@ -58,7 +64,7 @@ export async function savePost({ formData, newPost }) {
 //for global timeline
 export async function getPosts() {
   const posts = (
-    await sql`SELECT posts.id, posts.content, posts.time, posts.total_likes, users.id AS user_id, users.first_name, users.last_name, users.image_link FROM posts INNER JOIN users ON posts.user_id = users.id`
+    await sql`SELECT posts.id, posts.content, posts.time, posts.total_likes, users.id AS user_id, users.first_name, users.last_name, users.image_link FROM posts INNER JOIN users ON posts.user_id = users.id ORDER BY posts.time DESC`
   ).rows;
   return posts;
 }
@@ -66,7 +72,7 @@ export async function getPosts() {
 //for profile timeline
 export async function getUserPosts(userId) {
   const userPosts = (
-    await sql`SELECT posts.content, posts.time, posts.total_likes, users.first_name, users.last_name, users.image_link FROM posts INNER JOIN users ON posts.user_id = users.id WHERE posts.user_id = ${userId}`
+    await sql`SELECT posts.id, posts.content, posts.time, posts.total_likes, users.first_name, users.last_name, users.image_link FROM posts INNER JOIN users ON posts.user_id = users.id WHERE posts.user_id = ${userId} ORDER BY posts.time DESC`
   ).rows;
 
   return userPosts;
@@ -76,18 +82,20 @@ export async function addLike(postId, userId, totalLikes) {
   const queryString = `INSERT INTO likes (post_id, user_id) VALUES (${postId}, '${userId}')`;
   const queryString1 = `UPDATE posts SET total_likes = ${totalLikes} WHERE id = ${postId}`;
   console.log(queryString);
+  let result = {};
   try {
-    const result = await sql.query(queryString);
+    result = await sql.query(queryString);
     console.log("=========pass=========" + result);
   } catch (error) {
     console.log("=========error=======" + error);
-    return { result: false, message: error };
+    result = { result: false, message: error };
   }
   try {
-    const result = await sql.query(queryString1);
+    result = await sql.query(queryString1);
     console.log("=========pass=========" + result);
   } catch (error) {
     console.log("=========error=======" + error);
-    return { result: false, message: error };
+    result = { result: false, message: error };
   }
+  return result;
 }

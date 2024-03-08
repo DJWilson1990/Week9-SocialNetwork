@@ -2,7 +2,7 @@
 
 import { UserButton, currentUser, auth } from "@clerk/nextjs";
 import Button1 from "../components/Button1";
-import { getPosts } from "@/utils/utils";
+import { getPosts, getProfile, updateProfileImage } from "@/utils/utils";
 import DisplayPost from "../components/DisplayPost";
 import { redirect } from "next/navigation";
 
@@ -11,7 +11,15 @@ export default async function Page() {
 
   const { userId } = auth();
   if (userId) {
-    const user = currentUser();
+    const user = await currentUser();
+    console.log(user);
+    const userProfile = await getProfile(userId);
+    console.log(userProfile);
+    if (userProfile.image_link !== user.imageUrl) {
+      await updateProfileImage(userId, user.imageUrl);
+    }
+  } else {
+    redirect("/");
   }
 
   async function newPost() {
