@@ -54,7 +54,7 @@ export async function savePost({ formData, newPost }) {
 //for global timeline
 export async function getPosts() {
   const posts = (
-    await sql`SELECT posts.id, posts.content, posts.time, users.first_name, users.last_name FROM posts INNER JOIN users ON posts.user_id = users.id`
+    await sql`SELECT posts.id, posts.content, posts.time, users.id AS user_id, users.first_name, users.last_name, users.image_link FROM posts INNER JOIN users ON posts.user_id = users.id`
   ).rows;
   return posts;
 }
@@ -62,7 +62,7 @@ export async function getPosts() {
 //for profile timeline
 export async function getUserPosts(userId) {
   const userPosts = (
-    await sql`SELECT posts.content, posts.time, users.first_name, users.last_name FROM posts INNER JOIN users ON posts.user_id = users.id WHERE posts.user_id = ${userId}`
+    await sql`SELECT posts.content, posts.time, users.first_name, users.last_name, users.image_link FROM posts INNER JOIN users ON posts.user_id = users.id WHERE posts.user_id = ${userId}`
   ).rows;
   console.log("test log" + userPosts);
   return userPosts;

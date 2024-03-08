@@ -1,15 +1,17 @@
 import Image from "next/image";
+import Link from "next/link";
 
-export default function DisplayPostHeader({ userName, imgURL }) {
+export default function DisplayPostHeader({ userName, imgURL, userId }) {
+  console.log("~~~~~~#####~~~~~~" + userId);
   return (
     <div>
       <Image
-        src={profile.image_link ?? "https://placehold.co/20x20/png"}
+        src={imgURL ?? "https://placehold.co/20x20/png"}
         alt="profile picture"
         width={20}
         height={20}
       />
-      <h3>{userName}</h3>
+      <Link href={`/profile/${userId}`}>{userName}</Link>
     </div>
   );
 }

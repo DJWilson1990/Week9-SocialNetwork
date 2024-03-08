@@ -9,6 +9,8 @@ export default async function page({ params }) {
   console.log(userProfile);
   const posts = await getUserPosts(params.userId);
 
+  console.log("£££££££" + posts);
+
   return (
     <div>
       <p>This will be a page to view a profile and associated posts!</p>
