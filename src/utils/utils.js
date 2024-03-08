@@ -4,7 +4,7 @@ import { sql } from "@vercel/postgres";
 import { revalidatePath } from "next/cache";
 
 export async function updateProfileImage(userId, imageUrl) {
-  const queryString = `UPDATE users SET image_link = ${imageUrl} WHERE users.id = ${userId}`;
+  const queryString = `UPDATE users SET image_link = '${imageUrl}' WHERE users.id = '${userId}'`;
   console.log(queryString);
   await sql.query(queryString);
 }
