@@ -2,11 +2,11 @@ import CreatePost from "@/app/components/CreatePost";
 import { savePost } from "@/utils/utils";
 import { redirect } from "next/navigation";
 
-export default function Page({ params }) {
+export default async function Page({ params }) {
   async function createPost(formData) {
     "use server";
 
-    savePost({ formData });
+    await savePost({ formData });
     redirect("/timeline");
   }
 

@@ -40,7 +40,7 @@ export async function getProfile(id) {
 export async function savePost({ formData, newPost }) {
   const userId = formData.get("user_id");
   const postContent = formData.get("content");
-  const time = new Date().toDateString();
+  const time = new Date().toISOString();
 
   let queryString = `INSERT INTO posts (content, time, user_id) VALUES ('${postContent}', '${time}', '${userId}')`;
 

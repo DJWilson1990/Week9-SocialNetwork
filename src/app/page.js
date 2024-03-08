@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { SignInButton } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs";
-import { redirect } from "next/dist/server/api-utils";
+import { redirect } from "next/navigation";
 
 export default function Home() {
   const { userId } = auth();
