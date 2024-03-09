@@ -3,25 +3,24 @@
 import { redirect } from "next/navigation";
 import { addLike } from "./utils";
 
-// import { useRouter } from "next/navigation";
-
 export async function likePost({ postId, userId, totalLikes, pathName }) {
-  // redirect("/timeline");
-  // const router = useRouter;
-  console.log("~~~~~l~~~~~~~~~~" + pathName);
-  addLike(postId, userId, totalLikes);
+  let result = {};
 
-  // console.log(result.success);
-  redirect(`/timeline`);
-  // if (result.success === false) {
-  //   console.log(">>>>>>>>>>>>>" + pathName);
-  //   redirect("/timeline");
-  //   // redirect(`${pathName}`);
-  // } else {
-  //   return result.success;
-  // }
+  try {
+    const queryResult = await addLike(postId, userId);
+    result = {
+      success: true,
+      message: queryResult,
+    };
+  } catch (error) {
+    result = {
+      success: false,
+      message: error,
+    };
+  }
+  if (result.success === false) {
+    redirect("/timeline");
+  } else {
+    return result.success;
+  }
 }
-
-// export async function saveLikes(postId, userId) {
-//   const result = await addLike(postId, userId);
-// }

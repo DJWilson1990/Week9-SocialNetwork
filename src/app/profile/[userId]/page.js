@@ -3,13 +3,18 @@
 import DisplayPost from "@/app/components/DisplayPost";
 import ViewProfile from "@/app/components/ViewProfile";
 import { getProfile, getUserPosts } from "@/utils/utils";
+import { notFound } from "next/navigation";
 
 export default async function Page({ params }) {
   const userProfile = await getProfile(params.userId);
 
   const posts = await getUserPosts(params.userId);
 
-  console.log(posts);
+  if (!userProfile) {
+    notFound();
+  }
+
+  // console.log(posts);
 
   return (
     <div>

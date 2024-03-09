@@ -3,9 +3,6 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import "@radix-ui/themes/styles.css";
 import { Theme } from "@radix-ui/themes";
-// import { ThemeProvider } from "next-themes";
-
-// import { UserButton } from "@clerk/nextjs";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,9 +16,7 @@ export default function RootLayout({ children }) {
     <ClerkProvider>
       <html lang="en">
         <body className={inter.className}>
-          {/* <ThemeProvider attribute="class"> */}
           <Theme> {children}</Theme>
-          {/* </ThemeProvider> */}
         </body>
       </html>
     </ClerkProvider>

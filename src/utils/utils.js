@@ -85,14 +85,14 @@ export async function addLike(postId, userId) {
 
   let result = {};
   const queryResult = await sql.query(queryString);
-  // try {
-  //   const queryResult = await sql.query(queryString);
-  //   // console.log("=========pass=========" + queryResult);
-  //   result = { success: true, message: queryResult };
-  // } catch (error) {
-  //   // console.log("=========error=======" + error);
-  //   result = { success: false, message: error };
-  // }
+  try {
+    const queryResult = await sql.query(queryString);
+    // console.log("=========pass=========" + queryResult);
+    result = { success: true, message: queryResult };
+  } catch (error) {
+    // console.log("=========error=======" + error);
+    result = { success: false, message: error };
+  }
 
-  // return result;
+  return result;
 }

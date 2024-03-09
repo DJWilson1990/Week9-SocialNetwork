@@ -8,7 +8,7 @@ export default function DisplayPost({ post, displayHeader }) {
 
   async function like(pathName) {
     "use server";
-    likePost({
+    await likePost({
       postId: post.id,
       userId: post.user_id,
       totalLikes: post.total_likes + 1,

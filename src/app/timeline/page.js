@@ -5,6 +5,8 @@ import Button1 from "../components/Button1";
 import { getPosts, getProfile, updateProfileImage } from "@/utils/utils";
 import DisplayPost from "../components/DisplayPost";
 import { redirect } from "next/navigation";
+// import { ErrorBoundary } from "next/dist/client/components/error-boundary";
+// import GlobalError from "../components/GlobalError";
 
 export default async function Page() {
   const posts = await getPosts();
@@ -30,6 +32,7 @@ export default async function Page() {
 
   return (
     <div>
+      {/* <ErrorBoundary fallback={<GlobalError />}> */}
       <h1>Timeline</h1>
       <UserButton afterSignOutUrl="/" />
       <Button1 caption="Create Post" action={newPost} />
@@ -38,6 +41,7 @@ export default async function Page() {
           <DisplayPost post={post} displayHeader={true} />
         </div>
       ))}
+      {/* </ErrorBoundary> */}
     </div>
   );
 }
