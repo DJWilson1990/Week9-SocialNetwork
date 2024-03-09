@@ -15,7 +15,7 @@ export default async function page({ params }) {
       <ViewProfile profile={userProfile} />
       {posts.map((post) => (
         <div key={post.id}>
-          <DisplayPost post={post} />
+          <DisplayPost post={post} displayHeader={false} />
         </div>
       ))}
     </div>

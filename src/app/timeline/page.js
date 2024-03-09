@@ -35,7 +35,7 @@ export default async function Page() {
       <Button1 caption="Create Post" action={newPost} />
       {posts.map((post) => (
         <div key={post.id}>
-          <DisplayPost post={post} />
+          <DisplayPost post={post} displayHeader={true} />
         </div>
       ))}
     </div>

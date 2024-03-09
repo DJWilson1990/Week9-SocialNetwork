@@ -8,16 +8,16 @@ import { useFormStatus } from "react-dom";
 export default function CreatePost({ action, user_id }) {
   const { pending } = useFormStatus();
 
-  async function submitForm(event) {
-    event.preventDefault();
+  // async function submitForm(event) {
+  //   event.preventDefault();
 
-    const formData = new FormData(event.target);
+  //   const formData = new FormData(event.target);
 
-    action(formData);
-  }
+  //   action(formData);
+  // }
 
   return (
-    <Form.Root className="FormRoot mx-auto" onSubmit={submitForm}>
+    <Form.Root className="FormRoot mx-auto" action={action}>
       <input type="hidden" name="user_id" value={user_id} />
       <Form.Field className="FormField" name="content">
         <div
