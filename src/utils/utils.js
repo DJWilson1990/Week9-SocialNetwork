@@ -72,7 +72,7 @@ export async function getPosts() {
 //for profile timeline
 export async function getUserPosts(userId) {
   const userPosts = (
-    await sql`SELECT posts.id, posts.content, posts.time, posts.total_likes, users.first_name, users.last_name, users.image_link FROM posts INNER JOIN users ON posts.user_id = users.id WHERE posts.user_id = ${userId} ORDER BY posts.time DESC`
+    await sql`SELECT posts.id, posts.content, posts.time, posts.total_likes, users.id AS user_id, users.first_name, users.last_name, users.image_link FROM posts INNER JOIN users ON posts.user_id = users.id WHERE posts.user_id = ${userId} ORDER BY posts.time DESC`
   ).rows;
 
   return userPosts;

@@ -4,10 +4,12 @@ import DisplayPost from "@/app/components/DisplayPost";
 import ViewProfile from "@/app/components/ViewProfile";
 import { getProfile, getUserPosts } from "@/utils/utils";
 
-export default async function page({ params }) {
+export default async function Page({ params }) {
   const userProfile = await getProfile(params.userId);
 
   const posts = await getUserPosts(params.userId);
+
+  console.log(posts);
 
   return (
     <div>
