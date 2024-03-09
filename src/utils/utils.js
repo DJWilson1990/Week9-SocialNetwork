@@ -78,18 +78,21 @@ export async function getUserPosts(userId) {
   return userPosts;
 }
 
-export async function addLike(postId, userId, totalLikes) {
+export async function addLike(postId, userId) {
   const queryString = `INSERT INTO likes (post_id, user_id) VALUES (${postId}, '${userId}')`;
 
   console.log(queryString);
-  let result = {};
-  try {
-    result = await sql.query(queryString);
-    console.log("=========pass=========" + result);
-  } catch (error) {
-    console.log("=========error=======" + error);
-    result = { result: false, message: error };
-  }
 
-  return result;
+  let result = {};
+  const queryResult = await sql.query(queryString);
+  // try {
+  //   const queryResult = await sql.query(queryString);
+  //   // console.log("=========pass=========" + queryResult);
+  //   result = { success: true, message: queryResult };
+  // } catch (error) {
+  //   // console.log("=========error=======" + error);
+  //   result = { success: false, message: error };
+  // }
+
+  // return result;
 }
