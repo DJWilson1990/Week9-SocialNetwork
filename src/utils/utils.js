@@ -64,7 +64,7 @@ export async function savePost({ formData, newPost }) {
 //for global timeline
 export async function getPosts() {
   const posts = (
-    await sql`SELECT posts.id, posts.content, posts.time, posts.total_likes, users.id AS user_id, users.first_name, users.last_name, users.image_link FROM posts INNER JOIN users ON posts.user_id = users.id ORDER BY posts.time DESC`
+    await sql`SELECT posts.id, posts.content, posts.time, users.id AS user_id, users.first_name, users.last_name, users.image_link, (SELECT COUNT (*) FROM likes WHERE likes.post_id = posts.id) AS total_likes FROM posts INNER JOIN users ON posts.user_id = users.id ORDER BY posts.time DESC`
   ).rows;
   return posts;
 }
@@ -72,7 +72,7 @@ export async function getPosts() {
 //for profile timeline
 export async function getUserPosts(userId) {
   const userPosts = (
-    await sql`SELECT posts.id, posts.content, posts.time, posts.total_likes, users.id AS user_id, users.first_name, users.last_name, users.image_link FROM posts INNER JOIN users ON posts.user_id = users.id WHERE posts.user_id = ${userId} ORDER BY posts.time DESC`
+    await sql`SELECT posts.id, posts.content, posts.time, users.id AS user_id, users.first_name, users.last_name, users.image_link, (SELECT COUNT (*) FROM likes WHERE likes.post_id = posts.id) AS total_likes FROM posts INNER JOIN users ON posts.user_id = users.id WHERE posts.user_id = ${userId} ORDER BY posts.time DESC`
   ).rows;
 
   return userPosts;
@@ -80,7 +80,7 @@ export async function getUserPosts(userId) {
 
 export async function addLike(postId, userId, totalLikes) {
   const queryString = `INSERT INTO likes (post_id, user_id) VALUES (${postId}, '${userId}')`;
-  const queryString1 = `UPDATE posts SET total_likes = ${totalLikes} WHERE id = ${postId}`;
+
   console.log(queryString);
   let result = {};
   try {
@@ -90,12 +90,6 @@ export async function addLike(postId, userId, totalLikes) {
     console.log("=========error=======" + error);
     result = { result: false, message: error };
   }
-  try {
-    result = await sql.query(queryString1);
-    console.log("=========pass=========" + result);
-  } catch (error) {
-    console.log("=========error=======" + error);
-    result = { result: false, message: error };
-  }
+
   return result;
 }
