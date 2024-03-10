@@ -5,6 +5,7 @@ import Button1 from "../components/Button1";
 import { getPosts, getProfile, updateProfileImage } from "@/utils/utils";
 import DisplayPost from "../components/DisplayPost";
 import { redirect } from "next/navigation";
+import Nav from "../components/Nav";
 
 export default async function Page() {
   const posts = await getPosts();
@@ -30,10 +31,9 @@ export default async function Page() {
 
   return (
     <div className="flex flex-col">
-      <h1>Timeline</h1>
+      <Nav />
       <div className="flex items-center ml-10 mr-10">
-        <UserButton afterSignOutUrl="/" className="m-4" />
-        <div className="ml-10">
+        <div>
           <Button1 caption="Create Post" action={newPost} />
         </div>
       </div>

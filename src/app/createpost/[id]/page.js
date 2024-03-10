@@ -1,4 +1,5 @@
 import CreatePost from "@/app/components/CreatePost";
+import Nav from "@/app/components/Nav";
 import { savePost } from "@/utils/utils";
 import { redirect } from "next/navigation";
 
@@ -12,6 +13,7 @@ export default async function Page({ params }) {
 
   return (
     <div>
+      <Nav />
       <CreatePost action={createPost} user_id={params.id} />
     </div>
   );

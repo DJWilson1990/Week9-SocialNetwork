@@ -10,9 +10,19 @@ export default function Home() {
   }
   return (
     <div>
-      <h1>A Social Network</h1>
-      <div>
-        <SignInButton mode="modal" />
+      <div
+        className="bg-scroll h-dvh bg-cover"
+        style={{
+          backgroundImage: `url('/background-geometric.png')`,
+        }}
+      >
+        <h1 className="bg-white w-96 text-center font-bold mx-auto my-auto">
+          A Social Network
+          <SignInButton
+            mode="modal"
+            className="bg-white w-96 font-bold hover:text-blue-400 mx-auto"
+          />
+        </h1>
       </div>
     </div>
   );

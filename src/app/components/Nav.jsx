@@ -9,21 +9,15 @@ export default function Nav() {
   return (
     <div className="m-4 ml-10 flex flex-end">
       <ul>
-        {/* <li className="m-2 hover:text-white">
-          <Link href="/">HOME</Link>
-        </li> */}
-        <li className="m-2 hover:text-blue-200 inline font-bold">
+        <li className="m-4 mt-2 hover:text-white inline-block">
+          {userId ? <UserButton afterSignOutUrl="/" /> : <SignInButton />}
+        </li>
+        <li className="m-2 ml-2 hover:text-blue-400 inline font-bold">
           <Link href={`/profile/${userId}`}>MY PROFILE</Link>
         </li>
-        <li className="m-2 hover:text-blue-200 inline font-bold">
+        <li className="m-2 hover:text-blue-400 inline font-bold">
           <Link href="/timeline">TIMELINE</Link>
         </li>
-        {/* <li className="m-2 hover:text-white">
-          <Link href="/friends">FRIENDS</Link>
-        </li>
-        <li className="m-2 hover:text-white">
-          {userId ? <UserButton /> : <SignInButton />}
-        </li> */}
       </ul>
     </div>
   );

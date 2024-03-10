@@ -2,6 +2,7 @@
 
 import DisplayPost from "@/app/components/DisplayPost";
 import EditProfile from "@/app/components/EditProfile";
+import Nav from "@/app/components/Nav";
 import ViewProfile from "@/app/components/ViewProfile";
 import { getProfile, getUserPosts } from "@/utils/utils";
 import { notFound } from "next/navigation";
@@ -19,7 +20,7 @@ export default async function Page({ params }) {
 
   return (
     <div>
-      <p>This will be a page to view a profile and associated posts!</p>
+      <Nav />
       <ViewProfile profile={userProfile} />
       <EditProfile profile={userProfile} />
       {posts.map((post) => (

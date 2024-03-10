@@ -64,10 +64,10 @@ export async function savePost({ formData, newPost }) {
 }
 
 //for global timeline
-export async function getPosts() {
-  const posts = (
-    await sql`SELECT posts.id, posts.content, posts.time, users.id AS user_id, users.first_name, users.last_name, users.image_link, (SELECT COUNT (*) FROM likes WHERE likes.post_id = posts.id) AS total_likes FROM posts INNER JOIN users ON posts.user_id = users.id ORDER BY posts.time DESC`
-  ).rows;
+export async function getPosts(userId) {
+  const queryString = `SELECT posts.id, posts.content, posts.time, users.id AS user_id, users.first_name, users.last_name, users.image_link, (SELECT COUNT (*) FROM likes WHERE likes.post_id = posts.id) AS total_likes, (SELECT COUNT (*) FROM likes WHERE likes.post_id = posts.id AND likes.user_id = '${userId}') AS liked FROM posts INNER JOIN users ON posts.user_id = users.id ORDER BY posts.time DESC`;
+
+  const posts = (await sql.query(queryString)).rows;
   return posts;
 }
 

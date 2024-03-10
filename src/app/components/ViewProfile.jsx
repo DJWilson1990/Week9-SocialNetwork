@@ -20,6 +20,7 @@ export default async function ViewProfile({ profile }) {
       <p>{profile.gender}</p>
       <p>{profile.location}</p>
       <p>{profile.occupation}</p>
+      <p>{profile.about}</p>
     </div>
   );
 }
