@@ -5,8 +5,6 @@ import Button1 from "../components/Button1";
 import { getPosts, getProfile, updateProfileImage } from "@/utils/utils";
 import DisplayPost from "../components/DisplayPost";
 import { redirect } from "next/navigation";
-// import { ErrorBoundary } from "next/dist/client/components/error-boundary";
-// import GlobalError from "../components/GlobalError";
 
 export default async function Page() {
   const posts = await getPosts();
@@ -31,17 +29,19 @@ export default async function Page() {
   }
 
   return (
-    <div>
-      {/* <ErrorBoundary fallback={<GlobalError />}> */}
+    <div className="flex flex-col">
       <h1>Timeline</h1>
-      <UserButton afterSignOutUrl="/" />
-      <Button1 caption="Create Post" action={newPost} />
+      <div className="flex items-center ml-10 mr-10">
+        <UserButton afterSignOutUrl="/" className="m-4" />
+        <div className="ml-10">
+          <Button1 caption="Create Post" action={newPost} />
+        </div>
+      </div>
       {posts.map((post) => (
-        <div key={post.id}>
+        <div key={post.id} className="m-10">
           <DisplayPost post={post} displayHeader={true} />
         </div>
       ))}
-      {/* </ErrorBoundary> */}
     </div>
   );
 }

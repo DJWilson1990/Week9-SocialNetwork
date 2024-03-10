@@ -17,7 +17,7 @@ export default function DisplayPost({ post, displayHeader }) {
   }
 
   return (
-    <div>
+    <div className="border p-4">
       {displayHeader === true ? (
         <DisplayPostHeader
           userName={userName}
@@ -28,11 +28,9 @@ export default function DisplayPost({ post, displayHeader }) {
         <div></div>
       )}
 
-      <p>{post.content}</p>
-      <p>{post.time.toString()}</p>
+      <p className="text-xl mt-2">{post.content}</p>
+      <p className="text-sm mt-2">{post.time.toString()}</p>
       <Likes action={like} totalLikes={post.total_likes} postId={post.id} />
-      {/* <Button1 caption="Like" action={like} />
-      <p>Likes: {post.total_likes}</p> */}
     </div>
   );
 }

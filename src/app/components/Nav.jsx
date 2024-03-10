@@ -7,23 +7,23 @@ export default function Nav() {
   const { userId } = auth();
 
   return (
-    <div className="flex flex-row bg-slate-500">
+    <div className="m-4 ml-10 flex flex-end">
       <ul>
-        <li className="m-2 hover:text-white">
+        {/* <li className="m-2 hover:text-white">
           <Link href="/">HOME</Link>
+        </li> */}
+        <li className="m-2 hover:text-blue-200 inline font-bold">
+          <Link href={`/profile/${userId}`}>MY PROFILE</Link>
         </li>
-        <li className="m-2 hover:text-white">
-          <Link href="/profile">PROFILE</Link>
-        </li>
-        <li className="m-2 hover:text-white">
+        <li className="m-2 hover:text-blue-200 inline font-bold">
           <Link href="/timeline">TIMELINE</Link>
         </li>
-        <li className="m-2 hover:text-white">
+        {/* <li className="m-2 hover:text-white">
           <Link href="/friends">FRIENDS</Link>
         </li>
         <li className="m-2 hover:text-white">
           {userId ? <UserButton /> : <SignInButton />}
-        </li>
+        </li> */}
       </ul>
     </div>
   );

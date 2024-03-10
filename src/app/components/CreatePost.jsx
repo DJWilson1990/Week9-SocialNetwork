@@ -17,36 +17,38 @@ export default function CreatePost({ action, user_id }) {
   // }
 
   return (
-    <Form.Root className="FormRoot mx-auto" action={action}>
-      <input type="hidden" name="user_id" value={user_id} />
-      <Form.Field className="FormField" name="content">
-        <div
-          style={{
-            display: "flex",
-            alignItems: "baseline",
-            justifyContent: "space-between",
-          }}
-        >
-          <Form.Label className="FormLabel">Write post</Form.Label>
-          <Form.Message className="FormMessage" match="valueMissing">
-            Please enter a post
-          </Form.Message>
-        </div>
-        <Form.Control asChild>
-          <textarea className="Textarea" required />
-        </Form.Control>
-      </Form.Field>
+    <div>
+      <Form.Root className="FormRoot mx-auto" action={action}>
+        <input type="hidden" name="user_id" value={user_id} />
+        <Form.Field className="FormField" name="content">
+          <div
+            style={{
+              display: "flex",
+              alignItems: "baseline",
+              justifyContent: "space-between",
+            }}
+          >
+            <Form.Label className="FormLabel">Write post</Form.Label>
+            <Form.Message className="FormMessage" match="valueMissing">
+              Please enter a post
+            </Form.Message>
+          </div>
+          <Form.Control asChild>
+            <textarea className="Textarea" required />
+          </Form.Control>
+        </Form.Field>
 
-      <Form.Submit asChild>
-        <button
-          disabled={pending}
-          type="submit"
-          className="Button"
-          style={{ marginTop: 10 }}
-        >
-          {pending ? "Saving post..." : "Save"}
-        </button>
-      </Form.Submit>
-    </Form.Root>
+        <Form.Submit asChild>
+          <button
+            disabled={pending}
+            type="submit"
+            className="Button"
+            style={{ marginTop: 10 }}
+          >
+            {pending ? "Saving post..." : "Save"}
+          </button>
+        </Form.Submit>
+      </Form.Root>
+    </div>
   );
 }

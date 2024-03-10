@@ -15,9 +15,9 @@ export default function Likes({ action, totalLikes, postId }) {
   }
 
   return (
-    <div>
+    <div className="flex justify-between items-center mt-2">
       <Button1 caption="Like" action={incrementLikes} />
-      <p>Likes: {count}</p>
+      <p className="mr-10">Likes: {count}</p>
     </div>
   );
 }

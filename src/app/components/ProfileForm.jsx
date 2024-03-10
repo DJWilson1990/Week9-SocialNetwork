@@ -6,7 +6,6 @@ import * as Form from "@radix-ui/react-form";
 import "./RadixForm.css";
 
 export default function ProfileForm({ action, user_id, email, new_profile }) {
-  //space
   async function submitForm(event) {
     event.preventDefault();
 
@@ -33,9 +32,6 @@ export default function ProfileForm({ action, user_id, email, new_profile }) {
           <Form.Message className="FormMessage" match="valueMissing">
             Please enter your first name
           </Form.Message>
-          {/* <Form.Message className="FormMessage" match="typeMismatch">
-            Please provide a valid email
-          </Form.Message> */}
         </div>
         <Form.Control asChild>
           <input className="Input" type="text" required />
@@ -54,9 +50,6 @@ export default function ProfileForm({ action, user_id, email, new_profile }) {
           <Form.Message className="FormMessage" match="valueMissing">
             Please enter your last name
           </Form.Message>
-          {/* <Form.Message className="FormMessage" match="typeMismatch">
-            Please provide a valid email
-          </Form.Message> */}
         </div>
         <Form.Control asChild>
           <input className="Input" type="text" required />

@@ -3,6 +3,7 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import "@radix-ui/themes/styles.css";
 import { Theme } from "@radix-ui/themes";
+import Nav from "./components/Nav";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +17,8 @@ export default function RootLayout({ children }) {
     <ClerkProvider>
       <html lang="en">
         <body className={inter.className}>
-          <Theme> {children}</Theme>
+          <Nav />
+          <Theme>{children}</Theme>
         </body>
       </html>
     </ClerkProvider>

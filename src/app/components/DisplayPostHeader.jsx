@@ -3,14 +3,17 @@ import Link from "next/link";
 
 export default function DisplayPostHeader({ userName, imgURL, userId }) {
   return (
-    <div>
+    <div className="flex items-center">
       <Image
-        src={imgURL ?? "https://placehold.co/20x20/png"}
+        src={imgURL ?? "https://placehold.co/40x40/png"}
         alt="profile picture"
-        width={20}
-        height={20}
+        width={40}
+        height={40}
+        className="rounded-full mb-2"
       />
-      <Link href={`/profile/${userId}`}>{userName}</Link>
+      <Link href={`/profile/${userId}`} className="font-bold mb-2 ml-2">
+        {userName}
+      </Link>
     </div>
   );
 }
