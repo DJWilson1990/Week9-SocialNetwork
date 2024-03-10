@@ -21,7 +21,7 @@ export default async function Page({ params }) {
     <div>
       <p>This will be a page to view a profile and associated posts!</p>
       <ViewProfile profile={userProfile} />
-      <EditProfile />
+      <EditProfile profile={userProfile} />
       {posts.map((post) => (
         <div key={post.id} className="m-10 ml-10 mr-10 mx-auto">
           <DisplayPost post={post} displayHeader={false} />

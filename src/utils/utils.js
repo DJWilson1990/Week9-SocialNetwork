@@ -24,6 +24,8 @@ export async function saveProfile({ formData, newProfile }) {
   console.log(newProfile);
   if (newProfile === true) {
     queryString = `INSERT INTO users (id, first_name, last_name, email, gender, location, occupation, about) VALUES ('${id}', '${firstName}', '${lastName}', '${email}', '${gender}', '${location}', '${occupation}', '${about}')`;
+  } else {
+    queryString = `UPDATE users SET first_name = '${firstName}', last_name = '${lastName}', gender = '${gender}', location = '${location}', occupation = '${occupation}', about = '${about}' WHERE id = '${id}'`;
   }
   try {
     const result = await sql.query(queryString);

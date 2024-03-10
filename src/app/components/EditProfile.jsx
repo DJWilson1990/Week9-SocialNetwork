@@ -4,8 +4,9 @@ import React from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import "./EditProfile.css";
+// import { getProfile } from "@/utils/utils";
 
-export default function EditProfile() {
+export default function EditProfile({ profile }) {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
@@ -18,40 +19,66 @@ export default function EditProfile() {
           <Dialog.Description className="DialogDescription">
             Make changes to your profile here. Click save when you are done.
           </Dialog.Description>
-          <fieldset className="Fieldset">
-            <label className="Label" htmlFor="first_name">
-              First name
-            </label>
-            <input className="Input" id="first_name" defaultValue="" />
-          </fieldset>
-          <fieldset className="Fieldset">
-            <label className="Label" htmlFor="last_name">
-              Last name
-            </label>
-            <input className="Input" id="last_name" defaultValue="" />
-          </fieldset>
+          <form>
+            <fieldset className="Fieldset">
+              <label className="Label" htmlFor="first_name">
+                First name
+              </label>
+              <input
+                className="Input"
+                id="first_name"
+                name="first_name"
+                defaultValue={profile.first_name}
+              />
+            </fieldset>
+            <fieldset className="Fieldset">
+              <label className="Label" htmlFor="last_name">
+                Last name
+              </label>
+              <input
+                className="Input"
+                id="last_name"
+                name="last_name"
+                defaultValue={profile.last_name}
+              />
+            </fieldset>
 
-          <fieldset className="Fieldset">
-            <label className="Label" htmlFor="gender">
-              Gender
-            </label>
-            <input className="Input" id="gender" defaultValue="" />
-          </fieldset>
+            <fieldset className="Fieldset">
+              <label className="Label" htmlFor="gender">
+                Gender
+              </label>
+              <input
+                className="Input"
+                id="gender"
+                name="gender"
+                defaultValue={profile.gender}
+              />
+            </fieldset>
 
-          <fieldset className="Fieldset">
-            <label className="Label" htmlFor="occupation">
-              Occupation
-            </label>
-            <input className="Input" id="occupation" defaultValue="" />
-          </fieldset>
+            <fieldset className="Fieldset">
+              <label className="Label" htmlFor="occupation">
+                Occupation
+              </label>
+              <input
+                className="Input"
+                id="occupation"
+                name="occupation"
+                defaultValue={profile.occupation}
+              />
+            </fieldset>
 
-          <fieldset className="Fieldset">
-            <label className="Label" htmlFor="about">
-              About
-            </label>
-            <textarea className="textarea" id="about" defaultValue="" />
-          </fieldset>
-
+            <fieldset className="Fieldset">
+              <label className="Label" htmlFor="about">
+                About
+              </label>
+              <textarea
+                className="textarea"
+                id="about"
+                name="about"
+                defaultValue={profile.about}
+              />
+            </fieldset>
+          </form>
           <div
             style={{
               display: "flex",
