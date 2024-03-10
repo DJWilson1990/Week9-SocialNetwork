@@ -1,4 +1,5 @@
 import { likePost } from "@/utils/actions";
+import { auth } from "@clerk/nextjs";
 
 import DisplayPostHeader from "./DisplayPostHeader";
 import Likes from "./Likes";
@@ -6,14 +7,17 @@ import Likes from "./Likes";
 export default function DisplayPost({ post, displayHeader }) {
   const userName = `${post.first_name} ${post.last_name}`;
 
-  async function like(pathName) {
+  async function like() {
     "use server";
-    await likePost({
+
+    const { userId } = auth();
+
+    const result = await likePost({
       postId: post.id,
-      userId: post.user_id,
-      totalLikes: post.total_likes + 1,
-      pathName: pathName,
+      userId: userId,
     });
+    console.log("displayPost-like: " + result.success);
+    return result.success;
   }
 
   return (
@@ -29,8 +33,13 @@ export default function DisplayPost({ post, displayHeader }) {
       )}
 
       <p className="text-xl mt-2">{post.content}</p>
-      <p className="text-sm mt-2">{post.time.toString()}</p>
-      <Likes action={like} totalLikes={post.total_likes} postId={post.id} />
+      <p className="text-sm mt-2">{post.time.toISOString()}</p>
+      <Likes
+        action={like}
+        totalLikes={post.total_likes}
+        postId={post.id}
+        postLiked={post.liked}
+      />
     </div>
   );
 }

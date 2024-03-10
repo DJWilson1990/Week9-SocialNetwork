@@ -6,17 +6,18 @@ import Nav from "@/app/components/Nav";
 import ViewProfile from "@/app/components/ViewProfile";
 import { getProfile, getUserPosts } from "@/utils/utils";
 import { notFound } from "next/navigation";
+import { auth } from "@clerk/nextjs";
 
 export default async function Page({ params }) {
+  const { userId } = auth();
+
   const userProfile = await getProfile(params.userId);
 
-  const posts = await getUserPosts(params.userId);
+  const posts = await getUserPosts(params.userId, userId);
 
   if (!userProfile) {
     notFound();
   }
-
-  // console.log(posts);
 
   return (
     <div>

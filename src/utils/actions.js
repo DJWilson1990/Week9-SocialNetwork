@@ -1,9 +1,8 @@
 "use server";
 
-import { redirect } from "next/navigation";
 import { addLike } from "./utils";
 
-export async function likePost({ postId, userId, totalLikes, pathName }) {
+export async function likePost({ postId, userId }) {
   let result = {};
 
   try {
@@ -18,9 +17,6 @@ export async function likePost({ postId, userId, totalLikes, pathName }) {
       message: error,
     };
   }
-  if (result.success === false) {
-    redirect("/timeline");
-  } else {
-    return result.success;
-  }
+  console.log("like post" + result.success);
+  return result;
 }

@@ -8,8 +8,6 @@ import { redirect } from "next/navigation";
 import Nav from "../components/Nav";
 
 export default async function Page() {
-  const posts = await getPosts();
-
   const { userId } = auth();
   if (userId) {
     const user = await currentUser();
@@ -22,6 +20,9 @@ export default async function Page() {
   } else {
     redirect("/");
   }
+
+  const posts = await getPosts(userId);
+  console.log(posts);
 
   async function newPost() {
     "use server";

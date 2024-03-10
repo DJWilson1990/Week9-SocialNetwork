@@ -2,7 +2,7 @@
 
 import { useFormStatus } from "react-dom";
 
-export default function SubmitBtn() {
+export default function SubmitBtn({ defaultCaption, pendingCaption }) {
   const { pending } = useFormStatus();
 
   return (
@@ -12,7 +12,7 @@ export default function SubmitBtn() {
         type="submit"
         className="m-4 p-2 border hover:text-white hover:bg-black"
       >
-        {pending ? "Submitting..." : "Submit"}
+        {pending ? pendingCaption : defaultCaption}
       </button>
     </div>
   );
