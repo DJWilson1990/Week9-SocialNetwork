@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <div>
       <div
-        className="bg-scroll h-dvh bg-cover"
+        className="bg-scroll h-dvh w-dvw bg-cover"
         style={{
           backgroundImage: `url('/background-geometric.png')`,
         }}

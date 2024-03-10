@@ -71,20 +71,6 @@ export async function getPosts(userId) {
   return posts;
 }
 
-//for profile timeline
-export async function getUserPosts(userId, loggedInUserId) {
-  const queryString = `SELECT posts.id, posts.content, posts.time, users.id AS user_id, users.first_name, users.last_name, users.image_link, (SELECT COUNT (*) FROM likes WHERE likes.post_id = posts.id) AS total_likes, (SELECT COUNT (*) FROM likes WHERE likes.post_id = posts.id AND likes.user_id = '${loggedInUserId}') AS liked FROM posts INNER JOIN users ON posts.user_id = users.id WHERE posts.user_id = '${userId}' ORDER BY posts.time DESC`;
-
-  // const userPosts = (
-  //   await sql`SELECT posts.id, posts.content, posts.time, users.id AS user_id, users.first_name, users.last_name, users.image_link, (SELECT COUNT (*) FROM likes WHERE likes.post_id = posts.id) AS total_likes FROM posts INNER JOIN users ON posts.user_id = users.id WHERE posts.user_id = ${userId} ORDER BY posts.time DESC`
-  // ).rows;
-
-  const userPosts = await sql.query(queryString);
-  console.log(queryString);
-
-  return userPosts;
-}
-
 export async function addLike(postId, userId) {
   const queryString = `INSERT INTO likes (post_id, user_id) VALUES (${postId}, '${userId}')`;
 
@@ -100,6 +86,6 @@ export async function addLike(postId, userId) {
     // console.log("=========error=======" + error);
     result = { success: false, message: error };
   }
-
+  revalidatePath("/timeline");
   return result;
 }
