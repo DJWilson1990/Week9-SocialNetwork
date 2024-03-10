@@ -5,7 +5,6 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import "./EditProfile.css";
 import { updateProfile } from "@/utils/actions";
-// import { getProfile } from "@/utils/utils";
 
 export default function EditProfile({ profile }) {
   return (
@@ -105,9 +104,7 @@ export default function EditProfile({ profile }) {
               justifyContent: "flex-end",
             }}
           >
-            <Dialog.Close asChild>
-              {/* <button className="Button green">Save changes</button> */}
-            </Dialog.Close>
+            <Dialog.Close asChild></Dialog.Close>
           </div>
           <Dialog.Close asChild>
             <button className="IconButton" aria-label="Close">
@@ -119,5 +116,3 @@ export default function EditProfile({ profile }) {
     </Dialog.Root>
   );
 }
-
-// defaultValue="Profile bio"

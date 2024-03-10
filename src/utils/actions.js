@@ -18,7 +18,7 @@ export async function likePost({ postId, userId }) {
       message: error,
     };
   }
-  console.log("like post" + result.success);
+
   return result;
 }
 

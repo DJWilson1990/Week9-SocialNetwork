@@ -11,23 +11,16 @@ export default async function Page() {
   const { userId } = auth();
   if (userId) {
     const user = await currentUser();
-    console.log(user);
-
     const userProfile = await getProfile(userId);
-    console.log(userProfile);
     if (userProfile.image_link !== user.imageUrl) {
       await updateProfileImage(userId, user.imageUrl);
     }
   } else {
     redirect("/");
   }
-
   const posts = await getPosts(userId);
-  console.log(posts);
-
   async function newPost() {
     "use server";
-
     redirect(`/createpost/${userId}`);
   }
 

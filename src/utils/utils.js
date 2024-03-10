@@ -28,12 +28,9 @@ export async function saveProfile(formData) {
   } else {
     queryString = `UPDATE users SET first_name = '${firstName}', last_name = '${lastName}', gender = '${gender}', location = '${location}', occupation = '${occupation}', about = '${about}' WHERE id = '${id}'`;
   }
-  console.log(queryString);
   try {
     const result = await sql.query(queryString);
-    console.log("==================" + result);
   } catch (error) {
-    console.log("============1111====" + error);
     return { result: false, message: error };
   }
 }
@@ -56,9 +53,7 @@ export async function savePost({ formData, newPost }) {
   let result = {};
   try {
     result = await sql.query(queryString);
-    console.log("==================" + result);
   } catch (error) {
-    console.log("================" + error);
     result = { result: false, message: error };
   }
   revalidatePath("/timeline");
@@ -75,17 +70,11 @@ export async function getPosts(userId) {
 
 export async function addLike(postId, userId) {
   const queryString = `INSERT INTO likes (post_id, user_id) VALUES (${postId}, '${userId}')`;
-
-  console.log(queryString);
-
   let result = {};
-
   try {
     const queryResult = await sql.query(queryString);
-    // console.log("=========pass=========" + queryResult);
     result = { success: true, message: queryResult };
   } catch (error) {
-    // console.log("=========error=======" + error);
     result = { success: false, message: error };
   }
   revalidatePath("/timeline");

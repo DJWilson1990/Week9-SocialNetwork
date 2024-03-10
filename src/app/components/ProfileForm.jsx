@@ -2,23 +2,19 @@
 
 import React from "react";
 import * as Form from "@radix-ui/react-form";
-// import "./styles.css";
 import "./RadixForm.css";
 import { updateProfile } from "@/utils/actions";
 
 export default function ProfileForm({ action, user_id, email, new_profile }) {
   async function submitForm(event) {
     event.preventDefault();
-
     const formData = new FormData(event.target);
-
     action(formData);
   }
 
   console.log(user_id, email, new_profile);
   return (
     <Form.Root className="FormRoot mx-auto" action={updateProfile}>
-      {/* <Form.Root className="FormRoot mx-auto" onSubmit={submitForm}> */}
       <input type="hidden" name="user_id" value={user_id} />
       <input type="hidden" name="email" value={email} />
       <input type="hidden" name="new_profile" value={true} />
