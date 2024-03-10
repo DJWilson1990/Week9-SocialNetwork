@@ -4,6 +4,7 @@ import React from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import "./EditProfile.css";
+import { updateProfile } from "@/utils/actions";
 // import { getProfile } from "@/utils/utils";
 
 export default function EditProfile({ profile }) {
@@ -19,7 +20,10 @@ export default function EditProfile({ profile }) {
           <Dialog.Description className="DialogDescription">
             Make changes to your profile here. Click save when you are done.
           </Dialog.Description>
-          <form>
+          <form action={updateProfile}>
+            <input type="hidden" name="user_id" value={profile.id} />
+            <input type="hidden" name="email" value={profile.email} />
+            <input type="hidden" name="new_profile" value={false} />
             <fieldset className="Fieldset">
               <label className="Label" htmlFor="first_name">
                 First name
@@ -56,6 +60,18 @@ export default function EditProfile({ profile }) {
             </fieldset>
 
             <fieldset className="Fieldset">
+              <label className="Label" htmlFor="location">
+                Location
+              </label>
+              <input
+                className="Input"
+                id="location"
+                name="location"
+                defaultValue={profile.location}
+              />
+            </fieldset>
+
+            <fieldset className="Fieldset">
               <label className="Label" htmlFor="occupation">
                 Occupation
               </label>
@@ -78,6 +94,9 @@ export default function EditProfile({ profile }) {
                 defaultValue={profile.about}
               />
             </fieldset>
+            <button type="submit" className="Button green">
+              Update profile
+            </button>
           </form>
           <div
             style={{
@@ -87,7 +106,7 @@ export default function EditProfile({ profile }) {
             }}
           >
             <Dialog.Close asChild>
-              <button className="Button green">Save changes</button>
+              {/* <button className="Button green">Save changes</button> */}
             </Dialog.Close>
           </div>
           <Dialog.Close asChild>

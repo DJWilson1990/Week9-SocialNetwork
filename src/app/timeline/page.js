@@ -12,6 +12,7 @@ export default async function Page() {
   if (userId) {
     const user = await currentUser();
     console.log(user);
+
     const userProfile = await getProfile(userId);
     console.log(userProfile);
     if (userProfile.image_link !== user.imageUrl) {

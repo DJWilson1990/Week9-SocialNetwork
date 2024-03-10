@@ -9,7 +9,8 @@ export async function updateProfileImage(userId, imageUrl) {
   await sql.query(queryString);
 }
 
-export async function saveProfile({ formData, newProfile }) {
+export async function saveProfile(formData) {
+  const newProfile = formData.get("new_profile");
   const id = formData.get("user_id");
   const firstName = formData.get("first_name");
   const lastName = formData.get("last_name");
@@ -22,16 +23,17 @@ export async function saveProfile({ formData, newProfile }) {
   console.log("utils" + newProfile);
   let queryString = "";
   console.log(newProfile);
-  if (newProfile === true) {
+  if (newProfile === "true") {
     queryString = `INSERT INTO users (id, first_name, last_name, email, gender, location, occupation, about) VALUES ('${id}', '${firstName}', '${lastName}', '${email}', '${gender}', '${location}', '${occupation}', '${about}')`;
   } else {
     queryString = `UPDATE users SET first_name = '${firstName}', last_name = '${lastName}', gender = '${gender}', location = '${location}', occupation = '${occupation}', about = '${about}' WHERE id = '${id}'`;
   }
+  console.log(queryString);
   try {
     const result = await sql.query(queryString);
     console.log("==================" + result);
   } catch (error) {
-    console.log("================" + error);
+    console.log("============1111====" + error);
     return { result: false, message: error };
   }
 }

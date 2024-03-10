@@ -4,6 +4,7 @@ import React from "react";
 import * as Form from "@radix-ui/react-form";
 // import "./styles.css";
 import "./RadixForm.css";
+import { updateProfile } from "@/utils/actions";
 
 export default function ProfileForm({ action, user_id, email, new_profile }) {
   async function submitForm(event) {
@@ -16,10 +17,11 @@ export default function ProfileForm({ action, user_id, email, new_profile }) {
 
   console.log(user_id, email, new_profile);
   return (
-    <Form.Root className="FormRoot mx-auto" onSubmit={submitForm}>
+    <Form.Root className="FormRoot mx-auto" action={updateProfile}>
+      {/* <Form.Root className="FormRoot mx-auto" onSubmit={submitForm}> */}
       <input type="hidden" name="user_id" value={user_id} />
       <input type="hidden" name="email" value={email} />
-      <input type="hidden" name="new_profile" value={new_profile} />
+      <input type="hidden" name="new_profile" value={true} />
       <Form.Field className="FormField" name="first_name">
         <div
           style={{
@@ -101,7 +103,7 @@ export default function ProfileForm({ action, user_id, email, new_profile }) {
         </Form.Control>
       </Form.Field>
 
-      <Form.Field className="FormField" name="content">
+      <Form.Field className="FormField" name="about">
         <div
           style={{
             display: "flex",
