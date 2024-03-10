@@ -30,7 +30,6 @@ export default async function Page() {
 
   return (
     <div>
-      <p>This is the edit profile page!</p>
       <ProfileForm
         action={updateProfile}
         user_id={userId}
